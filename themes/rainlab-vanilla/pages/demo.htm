@@ -1,0 +1,153 @@
+title = "IM Demo"
+url = "/demo/:id"
+layout = "default"
+description = "简单网友互动demo"
+is_hidden = 0
+meta_title = "demo"
+meta_description = "demo"
+
+[session]
+security = "all"
+redirect = "account"
+==
+<?php
+function onStart()
+{
+    use RainLab\User\Models\User;
+    $user_id = $this->param('id');
+    $user_id = $user_id == 'default' ? 1 : $user_id;
+    
+    $this['cur_id'] = $user_id;
+    $this['cur_user'] = User::findOrFail($user_id);
+    
+}
+
+function onLoadMsg()
+{
+    $cur_id = intval(post('cur_id'));
+    $msg_list = \RainLab\Blog\Models\IMsg::where('user_id' , $cur_id)->get()->toArray();
+
+    return $msg_list;
+}
+
+function onSubmitMsg()
+{
+    $user_id = intval(post('user_id'));
+    $content = post('content');
+    $imsg = \RainLab\Blog\Models\IMsg::insertGetId([
+        'user_id' => $user_id,
+        'content' => $content,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s'),
+    ]);
+    
+    return ['id' => $imsg];
+}
+?>
+==
+{% put styles %}
+<style>
+    #msg_box{
+        overflow-y:auto;
+        height:400px;
+    }
+</style>
+{% endput %}
+
+<div class="row">
+    <div class="col-md-8">
+        <div id="msg_box">
+            {{ cur_user.name }} 编号为: {{ cur_id }} 消息初始化...
+            
+        </div>
+    </div>
+    <div class="col-md-4">
+        {% if user and (cur_user.id == user.id) %}
+            <form class="form-inline" id="msg_sub" method="post">
+              <div class="form-group">
+                <label for="exampleInputName2">消息:</label>
+                <input type="hidden" name="user_id" value="{{ cur_user.id }}">
+                <input type="text" name="content" class="form-control" id="exampleInputName2" placeholder="请输入">
+              </div>
+              <button type="button" class="btn btn-default" id="submit_msg">发送</button>
+            </form>
+        {% endif %}
+        
+        {% if user %}
+        {% if user.id != cur_id %}
+        <a href="/demo/{{ user.id }}">进入我的频道</a>
+        {% endif %}
+        {% else %}
+        <a href="/account">请先登录</a>
+        {% endif %}
+
+    </div>
+</div>
+
+{% put scripts %}
+
+<script>
+    
+    $(document).ready(function(){
+        
+        // 该直播室消息条数
+        var c = 0;
+        
+        
+        // render msg html
+        var renderMsg = function(data){
+            var list = '';
+            
+            for (var i = 0; i < data.length; i++) {
+				list += '<p>ID:' + data[i].user_id + '在 ' + data[i].created_at + '说:<br/>' +data[i].content + '</p>';
+			}
+			
+			return list;
+        };
+        
+        // 初始化消息列表
+        var initMsgBox = function(){
+            var cur_id = parseInt('{{ cur_id }}');
+            $.request('onLoadMsg' , {
+                success: function(res){
+                    var html = renderMsg(res);
+                    $("#msg_box").html(html);
+                },
+                data: {'cur_id':cur_id}
+            });
+        };
+        
+        
+        // 点击提交动态
+        $("#submit_msg").click(function(event){
+            var data = {
+                'user_id': $('input[name=user_id]').val(),
+                'content': $('input[name=content]').val(),
+            };
+            
+            $.request('onSubmitMsg' , {
+                success: function(res){
+                    if(parseInt(res.id) != 0){
+                        $('input[name=content]').val('');
+                        alert('发送成功');
+                    }else {
+                        alert('发送失败请重试');
+                    }
+                },
+                data:data
+            });
+            
+            initMsgBox();
+        });
+        
+        // 
+        initMsgBox();
+        
+        // 每隔秒刷新一次
+        setInterval(initMsgBox , 3000);
+            
+    });
+    
+</script>
+
+{% endput %}

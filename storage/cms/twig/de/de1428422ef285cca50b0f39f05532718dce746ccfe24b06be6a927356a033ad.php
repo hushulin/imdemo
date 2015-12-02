@@ -94,16 +94,24 @@ class __TwigTemplate_d882ece8ca2cfb67dcd8ed213f3aae959b57f454c352516346623fed9a4
         echo "\"><a href=\"";
         echo $this->env->getExtension('CMS')->pageFilter("forum");
         echo "\">Forum</a></li>
+                            <li class=\"";
+        // line 38
+        if (($this->getAttribute($this->getAttribute((isset($context["this"]) ? $context["this"] : null), "page", array()), "id", array()) == "demo")) {
+            echo "active";
+        }
+        echo "\"><a href=\"";
+        echo $this->env->getExtension('CMS')->pageFilter("demo");
+        echo "\">Demo</a></li>
                         </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
                             ";
-        // line 40
+        // line 41
         if ((isset($context["user"]) ? $context["user"] : null)) {
-            // line 41
+            // line 42
             echo "                                <li><a href=\"#\" data-request=\"onLogout\">Logout</a></li>
                             ";
         }
-        // line 43
+        // line 44
         echo "                        </ul>
                     </div>
                 </div>
@@ -112,64 +120,64 @@ class __TwigTemplate_d882ece8ca2cfb67dcd8ed213f3aae959b57f454c352516346623fed9a4
         </header>
 
         ";
-        // line 50
-        $context["jumbotronTexture"] = twig_random($this->env, array(0 => "carbon", 1 => "dustnscratches", 2 => "elegant", 3 => "grunge", 4 => "leather", 5 => "lines", 6 => "plaid", 7 => "wood"));
         // line 51
+        $context["jumbotronTexture"] = twig_random($this->env, array(0 => "carbon", 1 => "dustnscratches", 2 => "elegant", 3 => "grunge", 4 => "leather", 5 => "lines", 6 => "plaid", 7 => "wood"));
+        // line 52
         echo "
         <!-- Content -->
         <section id=\"layout-content\">
             <div class=\"jumbotron\" style=\"background-image:url(";
-        // line 54
+        // line 55
         echo $this->env->getExtension('CMS')->themeFilter((("assets/images/textures/" . (isset($context["jumbotronTexture"]) ? $context["jumbotronTexture"] : null)) . ".png"));
         echo ")\">
                 <div class=\"container\">
                     <h1>";
-        // line 56
+        // line 57
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["this"]) ? $context["this"] : null), "page", array()), "title", array()), "html", null, true);
         echo "</h1>
                     <p>";
-        // line 57
+        // line 58
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["this"]) ? $context["this"] : null), "page", array()), "description", array()), "html", null, true);
         echo "</p>
                 </div>
             </div>
             <div class=\"container\">
                 ";
-        // line 61
-        echo $this->env->getExtension('CMS')->pageFunction();
         // line 62
+        echo $this->env->getExtension('CMS')->pageFunction();
+        // line 63
         echo "            </div>
         </section>
 
         <!-- Footer -->
         <footer id=\"layout-footer\">
             ";
-        // line 67
+        // line 68
         $context['__cms_partial_params'] = [];
         echo $this->env->getExtension('CMS')->partialFunction("footer"        , $context['__cms_partial_params']        );
         unset($context['__cms_partial_params']);
-        // line 68
+        // line 69
         echo "        </footer>
 
         <!-- Scripts -->
         <script src=\"";
-        // line 71
+        // line 72
         echo $this->env->getExtension('CMS')->themeFilter(array(0 => "assets/javascript/jquery.js", 1 => "assets/vendor/bootstrap/js/transition.js", 2 => "assets/vendor/bootstrap/js/alert.js", 3 => "assets/vendor/bootstrap/js/button.js", 4 => "assets/vendor/bootstrap/js/carousel.js", 5 => "assets/vendor/bootstrap/js/collapse.js", 6 => "assets/vendor/bootstrap/js/dropdown.js", 7 => "assets/vendor/bootstrap/js/modal.js", 8 => "assets/vendor/bootstrap/js/tooltip.js", 9 => "assets/vendor/bootstrap/js/popover.js", 10 => "assets/vendor/bootstrap/js/scrollspy.js", 11 => "assets/vendor/bootstrap/js/tab.js", 12 => "assets/vendor/bootstrap/js/affix.js", 13 => "assets/javascript/app.js"));
-        // line 86
+        // line 87
         echo "\"></script>
         ";
-        // line 87
+        // line 88
         echo '<script src="'. Request::getBasePath()
                 .'/modules/system/assets/js/framework.js"></script>'.PHP_EOL;
         echo '<script src="'. Request::getBasePath()
                     .'/modules/system/assets/js/framework.extras.js"></script>'.PHP_EOL;
         echo '<link href="'. Request::getBasePath()
                     .'/modules/system/assets/css/framework.extras.css" rel="stylesheet">'.PHP_EOL;
-        // line 88
+        // line 89
         echo "        ";
         echo $this->env->getExtension('CMS')->assetsFunction('js');
         echo $this->env->getExtension('CMS')->displayBlock('scripts');
-        // line 89
+        // line 90
         echo "
     </body>
 </html>";
@@ -187,7 +195,7 @@ class __TwigTemplate_d882ece8ca2cfb67dcd8ed213f3aae959b57f454c352516346623fed9a4
 
     public function getDebugInfo()
     {
-        return array (  173 => 89,  169 => 88,  162 => 87,  159 => 86,  157 => 71,  152 => 68,  148 => 67,  141 => 62,  139 => 61,  132 => 57,  128 => 56,  123 => 54,  118 => 51,  116 => 50,  107 => 43,  103 => 41,  101 => 40,  91 => 37,  83 => 36,  75 => 35,  68 => 31,  49 => 14,  46 => 12,  43 => 11,  39 => 10,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
+        return array (  181 => 90,  177 => 89,  170 => 88,  167 => 87,  165 => 72,  160 => 69,  156 => 68,  149 => 63,  147 => 62,  140 => 58,  136 => 57,  131 => 55,  126 => 52,  124 => 51,  115 => 44,  111 => 42,  109 => 41,  99 => 38,  91 => 37,  83 => 36,  75 => 35,  68 => 31,  49 => 14,  46 => 12,  43 => 11,  39 => 10,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
@@ -227,6 +235,7 @@ class __TwigTemplate_d882ece8ca2cfb67dcd8ed213f3aae959b57f454c352516346623fed9a4
 /*                             <li class="{% if this.page.id == 'account' %}active{% endif %}"><a href="{{ 'account'|page }}">Account</a></li>*/
 /*                             <li class="{% if this.page.id == 'blog' %}active{% endif %}"><a href="{{ 'blog'|page }}">Blog</a></li>*/
 /*                             <li class="{% if this.page.id == 'forum' %}active{% endif %}"><a href="{{ 'forum'|page }}">Forum</a></li>*/
+/*                             <li class="{% if this.page.id == 'demo' %}active{% endif %}"><a href="{{ 'demo'|page }}">Demo</a></li>*/
 /*                         </ul>*/
 /*                         <ul class="nav navbar-nav navbar-right">*/
 /*                             {% if user %}*/

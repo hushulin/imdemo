@@ -2,6 +2,7 @@ description = "Default layout"
 
 [session]
 security = "all"
+redirect = 404
 ==
 <!DOCTYPE html>
 <html>
@@ -40,6 +41,7 @@ security = "all"
                             <li class="{% if this.page.id == 'account' %}active{% endif %}"><a href="{{ 'account'|page }}">Account</a></li>
                             <li class="{% if this.page.id == 'blog' %}active{% endif %}"><a href="{{ 'blog'|page }}">Blog</a></li>
                             <li class="{% if this.page.id == 'forum' %}active{% endif %}"><a href="{{ 'forum'|page }}">Forum</a></li>
+                            <li class="{% if this.page.id == 'demo' %}active{% endif %}"><a href="{{ 'demo'|page }}">Demo</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user %}
