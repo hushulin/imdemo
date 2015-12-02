@@ -1,4 +1,4 @@
-1449041790s:725:"a:6:{s:5:"mtime";i:1449022803;s:7:"content";s:247:"title = "Forum Channel"
+1449042038s:725:"a:6:{s:5:"mtime";i:1449022803;s:7:"content";s:247:"title = "Forum Channel"
 url = "/forum/channel/:slug"
 layout = "default"
 description = "View a specific forum channel."

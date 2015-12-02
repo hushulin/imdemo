@@ -1,5 +1,5 @@
 <?php 
-use RainLab\User\Models\User;class Cms565e9d2679b46_158607655Class extends \Cms\Classes\PageCode
+use RainLab\User\Models\User;class Cms565e9e1f3cf2e_1580109867Class extends \Cms\Classes\PageCode
 {
 public function onStart()
 {
